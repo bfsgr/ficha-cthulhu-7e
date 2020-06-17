@@ -14,13 +14,31 @@
  *= require_tree .
  *= require_self
  */
+ $fa-font-path: '@fortawesome/fontawesome-free/webfonts/';
+ @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+ @import '@fortawesome/fontawesome-free/scss/solid.scss';
 
 html, body {
     width: 100%;    
     height: 100%;    
     background-color: var(--dark);
-    text-decoration-color: var(--light);
     font-family: 'Oxanium' !important; 
 }
 
+.flex {
+    display: flex !important;
+}
+
+
+.justify {
+    &-center{
+        justify-content: center;
+    }
+    &-end{
+        justify-content: end;
+    }
+    &-start{
+        justify-content: start;
+    }
+}
 
