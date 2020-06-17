@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :invite
       t.string :e_password 
       t.string :salt
+      t.boolean :is_dm
       t.timestamps
     end
   end

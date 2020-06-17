@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
         end
         def save_login_state
             if session[:user_id]
-                redirect_to(:controller => 'session', :action => 'home')
+                redirect_to(:controller => 'player', :action => 'home')
                 return false
             else
                 return true

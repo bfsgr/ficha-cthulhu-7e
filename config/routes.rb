@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   get 'logout', to: 'user#logout'
 
-  get 'home', to: 'session#home'
+  get 'player', to: 'player#home'
+  get 'master', to: 'master#home'
 
 end

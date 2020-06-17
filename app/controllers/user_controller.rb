@@ -11,7 +11,8 @@ class UserController < ApplicationController
     @user = User.new(create_user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to :controller => 'session', :action => 'home'
+      redirect_to :controller => 'player', :action => 'home'
+
     else
       render "new"
     end
@@ -27,7 +28,7 @@ class UserController < ApplicationController
     login_user = User.authenticate(login_params)
     if login_user
       session[:user_id] = login_user.id
-      redirect_to :controller => 'session', :action => 'home'
+      redirect_to :controller => 'player', :action => 'home'
     else 
       @hasPassed = false
       render 'login'
