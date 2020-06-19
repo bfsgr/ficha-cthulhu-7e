@@ -1,2 +1,32 @@
-<h1>Character#new</h1>
-<p>Find me in app/views/character/new.html.erb</p>
+<div class='wrapper-newchar'>
+    <div style='display: none'>
+        <%= form_with scope: :character, url: newchar_path, local: true do |f| %>
+        <div class="form-group">
+            <%= f.text_field :name, :class => 'form-control', :autocomplete =>'off'%>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :ocupation, :class => 'form-control', :autocomplete =>'off'%>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :scholarity, :class => 'form-control'%>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :birth_place, :class => 'form-control'%>
+        </div>
+        <div class="form-group">
+            <%= f.text_area :mental_illnesses, :class => 'form-control'%>''
+        </div>
+        <div class="form-group">
+            <%= f.number_field :age, :class => 'form-control'%>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :sex, :class => 'form-control'%>
+        </div>
+
+        <%= f.submit 'Sign up', :class => "btn btn-primary"%>
+        <% end %>
+    </div>
+
+
+    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha o nome do seu personagem</h1>
+</div>

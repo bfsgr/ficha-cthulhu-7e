@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   get 'player', to: 'player#home'
   get 'master', to: 'master#home'
 
+
+  get 'newchar', to: 'character#new'
+  post 'newchar', to: 'character#create'
+
 end

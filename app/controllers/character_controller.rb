@@ -1,5 +1,8 @@
 class CharacterController < ApplicationController
+  before_action :authenticate_user
+  
   def new
+    @char = Character.new
   end
 
   def edit
