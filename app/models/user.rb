@@ -4,7 +4,9 @@ class User < ApplicationRecord
 
     INVITES = ["test0", "test1", "test2", "test3", "dm"]
     
-    attr_accessor :password, :username
+    has_many :characters, dependent: :destroy
+
+    attr_accessor :password
     validates :username, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
     validates :password, :confirmation => true #password_confirmation attr
     validates :invite, :uniqueness => true,  :presence => true, inclusion: { in: INVITES }
