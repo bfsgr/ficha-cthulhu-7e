@@ -41,3 +41,4 @@ config/database.yml
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.vscode
