@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'user#login'
+  
   get 'signup', to: 'user#new'
   post 'signup', to: 'user#create'
 
