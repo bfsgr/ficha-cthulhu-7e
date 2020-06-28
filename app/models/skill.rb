@@ -1,7 +1,7 @@
 class Skill < ApplicationRecord
     belongs_to :character
 
-    def self.skills
+    def self.available
         [
             ['Antropologia', 1],
             ['Arqueologia', 1],
