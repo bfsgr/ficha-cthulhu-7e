@@ -15,5 +15,11 @@ class CharacterController < ApplicationController
   end
 
   def create
+    @char = Character.new(create_char_params.merge(:player_id => @current_user.id))
+  end
+
+  private 
+  def create_char_params
+      params.require(:character).permit(:name, :ocupation, :scholarity, :birth_place, :mental_illnesses, :age, :sex)
   end
 end
