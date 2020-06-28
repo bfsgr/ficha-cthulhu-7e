@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   get 'player', to: 'player#home'
   get 'master', to: 'master#home'
 
-
   get 'newchar', to: 'character#new'
   post 'newchar', to: 'character#create'
+
+  get 'character/:id', to: 'character#show'
+
+  get 'setstat/:id', to: 'stats#new'
 
 end

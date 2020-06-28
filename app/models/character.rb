@@ -1,6 +1,6 @@
 class Character < ApplicationRecord
     belongs_to :user
-    has_many :stats
+    has_one :stats
     has_one :current_stat
 
     validates :name, :presence => true, :length => { :in => 3..50 }
