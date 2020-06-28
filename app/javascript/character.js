@@ -1,4 +1,4 @@
-function fase2(){
+fase2 = function(){
     let name = document.getElementById('name-input');
     let form = document.getElementById('character_name');
 
@@ -14,6 +14,7 @@ function fase2(){
     }
 
 }
+
 
 function fase3(){
     let ocupation_id = document.getElementById('ocupations');
@@ -32,34 +33,61 @@ function fase3(){
 }
 
 function fase4(){
-    let bp = document.getElementById('bp').value;
+    let val = document.getElementById('bp');
     let form = document.getElementById('character_birth_place');
-
-    form.value = bp;
-
-    $('#newchar-bp').fadeOut(400, function() {
-        document.getElementById('newchar-age').style.display = 'grid';
-    });
-    document.getElementById('fase-5').addEventListener('click', fase5 );
+    
+    if (val.checkValidity() == false) {
+        val.classList.add("is-invalid");
+    } else {
+        form.value = val.value;
+    
+        $('#newchar-bp').fadeOut(400, function() {
+            document.getElementById('newchar-age').style.display = 'grid';
+        });
+        document.getElementById('fase-5').addEventListener('click', fase5 );
+    }
 }
 
 function fase5(){
-    let val = document.getElementById('age').value;
+    let val = document.getElementById('age');
     let form = document.getElementById('character_age');
-
-    form.value = val;
-
-    $('#newchar-age').fadeOut(400, function() {
-        document.getElementById('newchar-sex').style.display = 'grid';
-    });
-    document.getElementById('fase-6').addEventListener('click', fase6 );
+    
+    if (val.checkValidity() == false) {
+        val.classList.add("is-invalid");
+    } else {
+        form.value = val.value;
+    
+        $('#newchar-age').fadeOut(400, function() {
+            document.getElementById('newchar-mental').style.display = 'grid';
+        });
+        document.getElementById('fase-6').addEventListener('click', fase6 );
+    }
 }
 
 function fase6(){
-
+    let val = document.getElementById('mental');
+    let form = document.getElementById('character_mental_illnesses');
+    
+    form.value = val.value;
+    
+    $('#newchar-mental').fadeOut(400, function() {
+        document.getElementById('newchar-sex').style.display = 'grid';
+    });
+    document.getElementById('fase-7').addEventListener('click', fase7 );
 }
 
-window.onload = function(){
-    document.getElementById('fase-2').addEventListener('click', fase2 );
+function fase7(){
+    let val = document.getElementById('sex');
+    let form = document.getElementById('character_sex');
+    
+    if (val.checkValidity() == false) {
+        val.classList.add("is-invalid");
+    } else {
+        form.value = val.value;
+    
+        $('#newchar-sex').fadeOut(400, function() {
+            document.getElementById('sendchar').click()
+        });
+    }
 }
 

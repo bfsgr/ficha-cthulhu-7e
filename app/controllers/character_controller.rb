@@ -15,8 +15,12 @@ class CharacterController < ApplicationController
   end
 
   def create
-    @char = Character.new(create_char_params.merge(:player_id => @current_user.id))
-    render plain: @char.inspect
+    @char = Character.new(create_char_params.merge(:user_id => @current_user.id))
+	if @char.save
+		render plain: @char.inspect
+	else
+		render 'new'
+	end
   end
 
   private 
