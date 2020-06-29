@@ -9,6 +9,13 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
+.newchar {
+    height: 100%;
+    form {
+        height: 100%;
+    }
+}
+
 
 #newchar-errors {
     background-color: var(--danger);

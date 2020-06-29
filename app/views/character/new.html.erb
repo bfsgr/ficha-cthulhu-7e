@@ -1,108 +1,52 @@
-<div style='display: none'>
-    <%= form_with scope: :character, url: newchar_path, local: true do |f| %>
-    <div class="form-group">
-        <%= f.text_field :name, :class => 'form-control', :autocomplete =>'off'%>
-    </div>
-    <div class="form-group">
-        <%= f.number_field :ocupation, :class => 'form-control', :autocomplete =>'off'%>
-    </div>
-    <div class="form-group">
-        <%= f.text_field :birth_place, :class => 'form-control'%>
-    </div>
-    <div class="form-group">
-        <%= f.text_area :mental_illnesses, :class => 'form-control'%>''
-    </div>
-    <div class="form-group">
-        <%= f.number_field :age, :class => 'form-control'%>
-    </div>
-    <div class="form-group">
-        <%= f.text_field :sex, :class => 'form-control'%>
-    </div>
+<div class='newchar'>
+    <%= form_with scope: :character, url: newchar_path, local: true do |f|%>
+        <div class="form-group wrapper-newchar" id='newchar-name'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha o nome do seu personagem</h1>
+            <%= f.text_field :name, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true', :pattern => '.{3,}', :style => 'grid-area: 3 / 3 / 3 / 6'%>
+            <a class='btn btn-primary align-self-center' onclick="fase2()" id='fase-2' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
 
-    <%= f.submit 'Sign up', :class => "btn btn-primary", :id => 'sendchar'%>
-    <% end %>
-</div>
-
-
-<div class='wrapper-newchar' id='newchar-name'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha o nome do seu personagem</h1>
-    <input required pattern=".{3,}" type='text' id='name-input' class='form-control align-self-center' style='grid-area: 3 / 3 / 3 / 6'>
-    <a class='btn btn-primary align-self-center' onclick="fase2()" id='fase-2' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
-    <% if @char.errors.any? %>
-    <div id='newchar-errors' class="toast" style="grid-area: 1/6/3/8; " role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="mr-auto">Erros</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            <% for message_error in @char.errors.full_messages %>
-            <p><%= message_error %></p>
+            <% if @char.errors.any? %>
+                <div id='newchar-errors' class="toast" style="grid-area: 1/6/3/8; " role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Erros</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <% for message_error in @char.errors.full_messages %>
+                        <p><%= message_error %></p>
+                        <% end %>
+                    </div>
+                </div>
             <% end %>
         </div>
-    </div>
+        <div class="form-group wrapper-newchar" id='newchar-ocupation'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha uma ocupação</h1>
+            <%= f.select :ocupation, Character.ocupations , {}, { :class => 'form-control align-self-center', :style => 'grid-area: 3 / 3 / 3 / 6' } %>
+            <a class='btn btn-primary align-self-center' id='fase-3' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
+        </div>
+        <div class="form-group wrapper-newchar" id='newchar-bp'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha um local de nascimento</h1>
+            <%= f.text_field :birth_place, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 6'%>
+            <a class='btn btn-primary align-self-center' id='fase-4' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
+        </div>
+        <div class="form-group wrapper-newchar"  id='newchar-age'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Qual a idade do seu personagem?</h1>
+            <%= f.number_field :age, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 6', :min => '18'%>
+            <a class='btn btn-primary align-self-center' id='fase-5' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
+        </div>
+        <div class="form-group wrapper-newchar"  id='newchar-mental'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Seu personagem tem doenças mentais? (Opcional)</h1>
+            <%= f.text_field :mental_illnesses, :class => 'form-control align-self-center', :autocomplete =>'off', :style => 'grid-area: 3 / 3 / 3 / 6'%>
+            <a class='btn btn-primary align-self-center' id='fase-6' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
+        </div>
+        <div class="form-group wrapper-newchar" id='newchar-sex'>
+            <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha o sexo do seu personagem</h1>
+            <%= f.text_field :sex, :class => 'form-control align-self-center', :autocomplete =>'off', :style => 'grid-area: 3 / 3 / 3 / 6', :required => 'true'%>
+            <a class='btn btn-primary align-self-center' id='fase-7' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
+            <%= f.submit 'Enviar', :class => "btn btn-primary align-self-center", :id => 'submit', :style => 'grid-area: 4 / 4 / 4 / 5'%>
+        </div>
     <% end %>
-</div>
-
-<div class='wrapper-newchar' id='newchar-ocupation'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha uma ocupação</h1>
-    <select required id="ocupations" class='form-control align-self-center' name="ocupations" style='grid-area: 3 / 3 / 3 / 6'>
-        <option value="" hidden disabled selected>Ocupação</option>
-
-        <option value="0">Advogado</option>
-        <option value="1">Andarilho</option>
-        <option value="2">Antiquário</option>
-        <option value="3">Artista</option>
-        <option value="4">Atleta</option>
-        <option value="5">Autor</option>
-        <option value="6">Bibliotecário</option>
-        <option value="7">Membro do clero</option>
-        <option value="8">Criminoso</option>
-        <option value="9">Detetive particular</option>
-        <option value="10">Diletante</option>
-        <option value="11">Engenheiro</option>
-        <option value="12">Fanático</option>
-        <option value="13">Fazendeiro</option>
-        <option value="14">Hacker</option>
-        <option value="15">Investigador de polícia</option>
-        <option value="16">Jornalista</option>
-        <option value="17">Médico</option>
-        <option value="18">Membro de tribo</option>
-        <option value="19">Missionário</option>
-        <option value="20">Músico</option>
-        <option value="21">Oficial de polícia</option>
-        <option value="22">Oficial militar</option>
-        <option value="23">Parapsicólogo</option>
-        <option value="24">Piloto</option>
-        <option value="25">Professor</option>
-        <option value="26">Profissional do entretenimento</option>
-        <option value="27">Soldado</option>
-    </select>
-    <a class='btn btn-primary align-self-center' id='fase-3' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
-</div>
-
-<div class='wrapper-newchar' id='newchar-bp'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha um local de nascimento</h1>
-    <input required type='text' id='bp' class='form-control align-self-center' style='grid-area: 3 / 3 / 3 / 6'>
-    <a class='btn btn-primary align-self-center' id='fase-4' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
-</div>
-
-<div class='wrapper-newchar' id='newchar-age'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Qual a idade do seu personagem?</h1>
-    <input required min='18' type='number' id='age' class='form-control align-self-center' style='grid-area: 3 / 3 / 3 / 6'>
-    <a class='btn btn-primary align-self-center' id='fase-5' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
-</div>
-
-<div class='wrapper-newchar' id='newchar-mental'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Seu personagem tem doenças mentais? (Opcional)</h1>
-    <input type='text' id='mental' class='form-control align-self-center' style='grid-area: 3 / 3 / 3 / 6'>
-    <a class='btn btn-primary align-self-center' id='fase-6' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
-</div>
-
-<div class='wrapper-newchar' id='newchar-sex'>
-    <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha o sexo do seu personagem</h1>
-    <input required type='text' id='sex' class='form-control align-self-center' style='grid-area: 3 / 3 / 3 / 6'>
-    <a class='btn btn-primary align-self-center' id='fase-7' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
 </div>
 
