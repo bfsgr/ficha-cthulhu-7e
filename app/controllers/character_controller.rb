@@ -22,7 +22,8 @@ class CharacterController < ApplicationController
 	def create
 		@char = Character.new(create_char_params.merge(:user_id => @current_user.id))
 		if @char.save
-			redirect_to '/setstat/' + (@char.id).to_s
+			session[:character_id] = @char.id
+			redirect_to :controller => 'stats', :action => 'new'
 		else
 			render 'new'
 		end

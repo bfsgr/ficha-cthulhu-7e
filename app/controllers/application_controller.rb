@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
         end
 
         def validate_char
-            @char = Character.find(params[:id])
+            @char = Character.find(session[:character_id])
             if @current_user.id == @char.user_id
                 return @char
             else

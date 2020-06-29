@@ -2,6 +2,8 @@ class StatsController < ApplicationController
     before_action :authenticate_user, :validate_char, :already_set
 
     def new
+        @stats = Stat.new
+        render plain: @char.inspect
     end
 
     def create
