@@ -20,11 +20,18 @@ class ApplicationController < ActionController::Base
         end
 
         def validate_char
-            @char = Character.find(session[:character_id])
-            if @current_user.id == @char.user_id
-                return @char
+            char_id = session[:character_id]
+            
+            if char_id
+                @char = Character.find(session[:character_id])
+                if @current_user.id == @char.user_id
+                    return @char
+                else
+                    return false
+                end
             else
-                return false
+                raise ActionController::RoutingError.new('No character set')
             end
+
         end
 end

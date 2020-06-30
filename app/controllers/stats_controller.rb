@@ -3,7 +3,6 @@ class StatsController < ApplicationController
 
     def new
         @stats = Stat.new
-        render plain: @char.inspect
     end
 
     def create
