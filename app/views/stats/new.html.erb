@@ -1,2 +1,5 @@
-<%= form_with scope: :stat, url: setstat_path, local: true do |f|%>
-<%end%>
+<div class='setstat-wrapper'>
+    <%= form_with scope: :stat, url: setstat_path, local: true do |f|%>
+        <%= f.number_field :str, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true'%>
+    <%end%>
+</div>
