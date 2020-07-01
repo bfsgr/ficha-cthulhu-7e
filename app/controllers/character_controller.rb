@@ -1,6 +1,5 @@
 class CharacterController < ApplicationController
 	before_action :authenticate_user
-	after_action :validate_char, :only => [:show]
 
 	def new
 		@char = Character.new
@@ -8,6 +7,10 @@ class CharacterController < ApplicationController
 
 	def show
 		session[:character_id] = params[:id]
+		if not validate_char()
+			redirect_to :controller => 'player', :action => 'home'
+		end
+
 	end
 
 	def edit
