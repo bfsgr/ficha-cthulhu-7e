@@ -1,13 +1,13 @@
 class CharacterController < ApplicationController
 	before_action :authenticate_user
-	before_action :validate_char, :only => [:show]
+	after_action :validate_char, :only => [:show]
 
 	def new
 		@char = Character.new
 	end
 
 	def show
-		render plain: @char.inspect
+		session[:character_id] = params[:id]
 	end
 
 	def edit

@@ -18,12 +18,22 @@
     }
 }
 
-.char-btn{
-    color: var(--light);
-    border: var(--light) solid 1px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.char{
+    &-btn{
+        color: var(--light);
+        border: var(--light) solid 1px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100px;
+        width: 125px;
+        margin-left: 1em;
+        min-width: 125px;
+    }
+    &-area{
+        display: flex;
+        overflow-x: auto;
+    }
 }
