@@ -21,7 +21,7 @@
                 </div>
             <% end %>
         </div>
-        <div class="form-group wrapper-newchar" id='newchar-ocupation'>
+        <div class="form-group wrapper-newchar " id='newchar-ocupation'>
             <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Escolha uma ocupação</h1>
             <%= f.select :ocupation, Character.ocupations , {}, { :class => 'form-control align-self-center', :style => 'grid-area: 3 / 3 / 3 / 6' } %>
             <a class='btn btn-primary align-self-center' id='fase-3' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>

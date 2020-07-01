@@ -1,5 +1,17 @@
-<div class='setstat-wrapper'>
-    <%= form_with scope: :stat, url: setstat_path, local: true do |f|%>
-        <%= f.number_field :str, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true'%>
-    <%end%>
-</div>
+<%= form_with scope: :stat, url: setstat_path, local: true do |f|%>
+    <div class='setstat-wrapper'>
+        <h1 class="setstat-header" >Defina os atributos de <%=@char.name%></h1>
+        <h2 class="setstat-points">
+            <p id="points">460</p> pontos restantes
+        </h2>
+        <%= f.number_field :str, :class => 'card setstat-card bg-danger', :min => '15', :max => '90',  :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 4'%>
+        <%= f.number_field :dex, :class => 'card setstat-card bg-primary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 4 / 3 / 5'%>
+        <%= f.number_field :int, :class => 'card setstat-card bg-success', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 5 / 3 / 6'%>
+        <%= f.number_field :con, :class => 'card setstat-card bg-warning', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 6 / 3 / 7'%>
+        <%= f.number_field :app, :class => 'card setstat-card bg-info', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 3 / 4 / 4'%>
+        <%= f.number_field :pow, :class => 'card setstat-card bg-secondary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 4 / 4 / 5'%>
+        <%= f.number_field :siz, :class => 'card setstat-card bg-orange', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 5 / 4 / 6'%>
+        <%= f.number_field :edu, :class => 'card setstat-card bg-pink', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 6 / 4 / 7'%>
+        <%= f.submit 'Continuar', :class => "btn btn-primary align-self-center", :id => 'submit', :style => 'grid-area: 5 / 4 / 5 / 6'%>
+    </div>
+    <%end%> 
