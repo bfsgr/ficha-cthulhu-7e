@@ -11,6 +11,10 @@ class CharacterController < ApplicationController
 			redirect_to :controller => 'player', :action => 'home'
 		end
 
+		if stats_not_set()
+			redirect_to :controller => 'stats', :action => 'new'
+		end
+
 	end
 
 	def edit

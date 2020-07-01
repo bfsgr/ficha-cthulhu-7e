@@ -34,4 +34,13 @@ class ApplicationController < ActionController::Base
             end
 
         end
+
+        def stats_not_set
+            data = Stat.where(character_id: @char.id)
+            if data == [] 
+                return true
+            else
+                return false
+            end
+        end
 end

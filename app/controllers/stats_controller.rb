@@ -1,20 +1,11 @@
 class StatsController < ApplicationController
-    before_action :authenticate_user, :validate_char, :already_set
+    before_action :authenticate_user, :validate_char
+    before_action :stats_not_set, :only => [:new, :create]
 
     def new
         @stats = Stat.new
     end
 
     def create
-    end
-
-    private
-    def already_set
-        data = Stat.where(character_id: @char.id)
-        if data == [] 
-            return true
-        else
-            return false
-        end
     end
 end
