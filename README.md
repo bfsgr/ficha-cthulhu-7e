@@ -5,3 +5,4 @@
 - [ ] Painel do mestre
 - [ ] Painel do player:
   - [X] Menu principal
+  - [X] Criação básica de personagem
