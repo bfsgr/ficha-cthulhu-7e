@@ -13,7 +13,8 @@ class CreateStats < ActiveRecord::Migration[6.0]
       t.integer :edu
       t.integer :luc
       t.integer :mov
-      t.string :bon
+      t.integer :dx
+      t.integer :body
       t.integer :lvl
 
       t.timestamps

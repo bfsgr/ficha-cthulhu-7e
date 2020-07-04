@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_021828) do
+ActiveRecord::Schema.define(version: 2020_06_19_184115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,8 @@ ActiveRecord::Schema.define(version: 2020_06_28_021828) do
     t.integer "edu"
     t.integer "luc"
     t.integer "mov"
-    t.string "bon"
+    t.integer "dx"
+    t.integer "body"
     t.integer "lvl"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
