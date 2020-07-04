@@ -1,19 +1,29 @@
 var inputs = document.getElementsByClassName("setstat-card");
 
-update_points = function(){
+update_points = function(ev){
     const POINTS = 460;
 
-    let ac = 0;
+    let changed = ev.target;
+    let newv = Number(changed.value);
+    let index = changed.dataset.index;
 
-    for(let i = 0; i < 8; i++) {
-        if (inputs[i] != undefined) {
+    let ac = 0;
+    for(let i = 0; i < 8; i++){
+        if( i != index){
             ac += Number(inputs[i].value)
         }
     }
 
     let av = POINTS - ac;
 
-    $('#points').text(av);
+    if( av - newv >= 0){
+        $('#points').text(av - newv);
+    } else if ( (av - newv) == 0 ) {
+        $('#points').text(0);
+    } else {
+        changed.value = av;
+        $('#points').text(0)
+    }
 }
 
 
