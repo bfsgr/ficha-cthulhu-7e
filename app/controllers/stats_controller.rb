@@ -1,15 +1,22 @@
 class StatsController < ApplicationController
     before_action :authenticate_user, :validate_char
-    before_action :stats_not_set, :only => [:new, :create]
 
     def new
-        @stats = Stat.new
+        if stats_not_set()
+            @stats = Stat.new
+        else
+            redirect_to '/character/' + @char.id.to_s
+        end
     end
 
     def create
-        @stats = Stat.new(stat_params.merge(:character_id => @char.id))
-        @stats.save
-        render plain: @stats.inspect
+        if stats_not_set()
+            @stats = Stat.new(stat_params.merge(:character_id => @char.id))
+            @stats.save
+            render plain: @stats.inspect
+        else
+            redirect_to '/character/' + @char.id.to_s
+        end
     end
 
     private
