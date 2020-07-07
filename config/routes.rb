@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'setstat', to: 'stats#new'
   post 'setstat', to: 'stats#create'
 
+  get 'preskills', to: "skill#pre_skills"
+
 end
