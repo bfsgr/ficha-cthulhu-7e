@@ -37,7 +37,7 @@ class Character < ApplicationRecord
     has_one :current_stat
 
     validates :name, :presence => true, :length => { :in => 3..50 }
-    validates :ocupation, :presence => true, inclusion: { in: self.ocupations }
+    validates :ocupation, :presence => true, numericality: { only_integer: true, less_than: 28, greater_than: -1 }
     validates :birth_place, :presence => true
     validates :age, :presence => true
     validates :sex, :presence => true
