@@ -16,7 +16,7 @@ class Stat < ApplicationRecord
 
     private
     def sum_less_than_461
-        if (str.to_i + dex.to_i + int.to_i + app.to_i + pow.to_i + edu.to_i + con.to_i + siz.to_i) >= 460
+        if (str.to_i + dex.to_i + int.to_i + app.to_i + pow.to_i + edu.to_i + con.to_i + siz.to_i) > 460
             errors.add(:base, "Pontos maiores do que 460") 
         end
     end
