@@ -32,5 +32,32 @@ class Stat < ApplicationRecord
         else
             self.mov = 8
         end
+
+        mod = str.to_i + siz.to_i
+
+        case mod
+        when 2..64
+            self.dx = '-2'
+            self.body = '-2'
+        when 65..84
+            self.dx = '-1'
+            self.body = '-1'
+        when 85..124
+            self.dx = '0'
+            self.body = '0'
+        when 125..164
+            self.dx = '1d4'
+            self.body = '1'
+        when 165..204
+            self.dx = '1d6'
+            self.body = '2'
+        when 205..284
+            self.dx = '2d6'
+            self.body = '3'
+        else
+            self.dx = '3d6'
+            self.body = '4'
+        end
+
     end
 end
