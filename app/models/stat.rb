@@ -25,6 +25,24 @@ class Stat < ApplicationRecord
         self.lvl = 1
         self.luc = rand(15..90)
 
+        gen_mov()
+        gen_dx_body()
+    end
+
+    def improve_edu
+        val = rand(1..100)
+        if val > edu.to_i
+            d10 = rand(1..10)
+            new_edu = d10 + edu.to_i
+            if new_edu > 99
+                self.edu = 99
+            else 
+                self.edu = new_edu
+            end
+        end
+    end
+
+    def gen_mov
         if str < siz and dex < siz 
             self.mov = 7
         elsif str > siz and dex > siz
@@ -32,7 +50,9 @@ class Stat < ApplicationRecord
         else
             self.mov = 8
         end
+    end
 
+    def gen_dx_body
         mod = str.to_i + siz.to_i
 
         case mod
@@ -58,6 +78,5 @@ class Stat < ApplicationRecord
             self.dx = '3d6'
             self.body = '4'
         end
-
     end
 end
