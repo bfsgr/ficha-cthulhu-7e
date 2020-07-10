@@ -4,5 +4,3 @@
 - [X] Sistema de login por código de convites
 - [ ] Painel do mestre
 - [ ] Painel do player:
-  - [X] Menu principal
-  - [X] Criação básica de personagem
