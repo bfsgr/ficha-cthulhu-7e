@@ -12,8 +12,20 @@ class StatsController < ApplicationController
     def create
         if stats_not_set()
             @stats = Stat.new(stat_params.merge(:character_id => @char.id))
-            @stats.save
-            render plain: @stats.inspect
+            if @stats.save
+                case @char.age
+                when 18..19
+                    #Decrease 5pts from STR or SIZ
+                when 20..39
+                    # Improve EDU test
+                when 40..49
+                when 50..59
+                when 60..79
+                when 80..89
+                else
+                end
+            end
+            
         else
             redirect_to '/character/' + @char.id.to_s
         end
