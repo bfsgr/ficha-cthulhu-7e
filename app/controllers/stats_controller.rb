@@ -15,14 +15,27 @@ class StatsController < ApplicationController
             if @stats.save
                 case @char.age
                 when 18..19
-                    #Decrease 5pts from STR or SIZ
+                    # Decrease 5pts from STR or SIZ
+                    # Advantage in luck setting
                 when 20..39
                     # Improve EDU test
                 when 40..49
+                    # Decrease 5pts from STR, CON, or DEX and also APP.
+                    # Two EDU improvement tests
                 when 50..59
-                when 60..79
+                    # Decrease 10pts from STR, CON, or DEX and also APP.
+                    # Three EDU improvement tests
+                when 60..69
+                    # Decrease 20pts from STR, CON, or DEX and also -15 APP.
+                    # Four EDU improvement tests
+                when 70..79
+                    # Decrease 40pts from STR, CON, or DEX and also -20 APP.
+                    # Four EDU improvement tests 
                 when 80..89
+                    # Decrease 80pts from STR, CON, or DEX and also -25 APP.
+                    # Four EDU improvement tests 
                 else
+                    #panic!
                 end
             end
             
