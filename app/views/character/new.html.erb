@@ -33,7 +33,7 @@
         </div>
         <div class="form-group wrapper-newchar"  id='newchar-age'>
             <h1 style='grid-area: 2 / 3 / 2 / 6; text-align: center'>Qual a idade do seu personagem?</h1>
-            <%= f.number_field :age, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 6', :min => '18'%>
+            <%= f.number_field :age, :class => 'form-control align-self-center', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 6', :min => '18', :max => '89' %>
             <a class='btn btn-primary align-self-center' id='fase-5' style='grid-area: 4 / 4 / 4 / 5'>Continuar</a>
         </div>
         <div class="form-group wrapper-newchar"  id='newchar-mental'>
