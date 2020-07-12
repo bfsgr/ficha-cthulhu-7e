@@ -44,8 +44,8 @@ class Stat < ApplicationRecord
 
     def derive
         self.lvl = 1
-
-        if age < 20
+        
+        if self.character.age < 20
             gen_luck(true)
         else
             gen_luck(false)
