@@ -1,7 +1,6 @@
 class Stat < ApplicationRecord
     belongs_to :character
-    before_save :derive
-
+    before_save :derive, :sum_less_than_461
 
     validates :str, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
     validates :dex, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
@@ -11,23 +10,6 @@ class Stat < ApplicationRecord
     validates :edu, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
     validates :con, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
     validates :siz, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-
-    validate :sum_less_than_461
-
-    private
-    def sum_less_than_461
-        if (str.to_i + dex.to_i + int.to_i + app.to_i + pow.to_i + edu.to_i + con.to_i + siz.to_i) > 460
-            errors.add(:base, "Pontos maiores do que 460") 
-        end
-    end
-
-    def derive
-        self.lvl = 1
-        self.luc = rand(15..90)
-
-        gen_mov()
-        gen_dx_body()
-    end
 
     def improve_edu
         val = rand(1..100)
@@ -41,6 +23,37 @@ class Stat < ApplicationRecord
             end
         end
     end
+
+    def gen_luck(advantage)
+        t1 = rand(15..90)
+        if advantage
+            t2 = rand(15..90)
+            self.luc = [t1, t2].max
+        else
+            self.luc = t1
+        end
+    end
+
+    private
+    def sum_less_than_461
+        if (str.to_i + dex.to_i + int.to_i + app.to_i + pow.to_i + edu.to_i + con.to_i + siz.to_i) > 460
+            errors.add(:base, "Pontos maiores do que 460") 
+        end
+    end
+
+    def derive
+        self.lvl = 1
+
+        if age < 20
+            gen_luck(true)
+        else
+            gen_luck(false)
+        end
+        
+        gen_mov()
+        gen_dx_body()
+    end
+
 
     def gen_mov
         if str < siz and dex < siz 
