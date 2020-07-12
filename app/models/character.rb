@@ -33,7 +33,7 @@ class Character < ApplicationRecord
     end
 
     belongs_to :user
-    has_one :stats
+    has_one :stat
     has_one :current_stat
 
     validates :name, :presence => true, :length => { :in => 3..50 }
