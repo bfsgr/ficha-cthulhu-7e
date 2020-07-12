@@ -35,9 +35,9 @@ class ApplicationController < ActionController::Base
 
         end
 
-        def stats_not_set
+        def stats_set
             @stat = @char.stat
-            if @stat
+            if @stat.nil?
                 return false
             else
                 return @stat

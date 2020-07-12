@@ -2,7 +2,7 @@ class StatsController < ApplicationController
     before_action :authenticate_user, :validate_char
 
     def new
-        if stats_not_set()
+        if not stats_set()
             @stats = Stat.new
         else
             redirect_to '/character/' + @char.id.to_s
@@ -10,10 +10,13 @@ class StatsController < ApplicationController
     end
     
     def age_limits
+        if stats_set() # => generate @stat
+            
+        end
     end
 
     def create
-        if stats_not_set()
+        if not stats_set()
             @stats = Stat.new(stat_params.merge(:character_id => @char.id))
             if @stats.save
                 redirect_to :action => 'age_limits'
