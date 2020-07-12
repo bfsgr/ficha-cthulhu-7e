@@ -11,6 +11,15 @@ class Stat < ApplicationRecord
     validates :con, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
     validates :siz, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
 
+    validates :str, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :dex, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :int, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :app, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :pow, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :edu, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :con, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+    validates :siz, :presence => true,  numericality: { only_integer: true, less_than: 100, greater_than: 0 }, on: :update
+
 
     def improve_edu(i)
         for _ in 0..i-1
