@@ -1,25 +1,28 @@
 class Stat < ApplicationRecord
     belongs_to :character
-    before_save :derive, :sum_less_than_461
+    before_create :derive, :sum_less_than_461
 
-    validates :str, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :dex, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :int, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :app, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :pow, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :edu, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :con, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
-    validates :siz, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }
+    validates :str, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :dex, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :int, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :app, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :pow, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :edu, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :con, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
+    validates :siz, :presence => true,  numericality: { only_integer: true, less_than: 91, greater_than: 14 }, on: :create
 
-    def improve_edu
-        val = rand(1..100)
-        if val > edu.to_i
-            d10 = rand(1..10)
-            new_edu = d10 + edu.to_i
-            if new_edu > 99
-                self.edu = 99
-            else 
-                self.edu = new_edu
+
+    def improve_edu(i)
+        for _ in 0..i-1
+            val = rand(1..100)
+            if val > self.edu
+                d10 = rand(1..10)
+                new_edu = d10 + edu.to_i
+                if new_edu > 99
+                    self.edu = 99
+                else 
+                    self.edu = new_edu
+                end
             end
         end
     end
