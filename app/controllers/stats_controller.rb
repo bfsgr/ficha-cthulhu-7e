@@ -13,36 +13,18 @@ class StatsController < ApplicationController
         if stats_set() # => generate @stat            
             case @char.age
             when 18..19
-                @change = [:str, :siz]
-                @must = :edu
-                @points = { change: 5, must: 5 }
-                @details = { change: ['Força', 'Tamanho'], must: 'Educação' }
+                @status = AgeLimit.new(5, false)
             when 20..39
             when 40..49
-                @change = [:str, :con, :dex]
-                @must = :app
-                @points = { change: 5, must: 5 }
-                @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+                @status = AgeLimit.new(5, true)
             when 50..59
-                @change = [:str, :con, :dex]
-                @must = :app
-                @points = { change: 10, must: 10 }
-                @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+                @status = AgeLimit.new(10, true)
             when 60..69
-                @change = [:str, :con, :dex]
-                @must = :app
-                @points = { change: 15, must: 15 }
-                @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+                @status = AgeLimit.new(15, true)
             when 70..79
-                @change = [:str, :con, :dex]
-                @must = :app
-                @points = { change: 20, must: 20 }
-                @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+                @status = AgeLimit.new(20, true)
             when 80..89
-                @change = [:str, :con, :dex]
-                @must = :app
-                @points = { change: 25, must: 25 }
-                @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+                @status = AgeLimit.new(25, true)
             else
                 raise ActionController::RoutingError.new('Invalid age') #should never run
             end
@@ -65,5 +47,21 @@ class StatsController < ApplicationController
     private
     def stat_params
         params.require(:stat).permit(:str, :dex, :app, :int, :pow, :edu, :siz, :con)
+    end
+
+end
+
+class AgeLimit
+    attr_reader :symbols, :details, :points
+    def initialize(value, default)
+        if default
+            @symbols = { change: [:str, :con, :dex], must: [:app] }
+            @points = value
+            @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+        else
+            @symbols = { change: [:str, :siz], must: [:edu] }
+            @points = value
+            @details = { change: ['Força', 'Tamanho'], must: 'Educação' }
+        end
     end
 end
