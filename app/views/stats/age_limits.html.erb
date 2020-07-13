@@ -1,0 +1,17 @@
+<h1>Devido a idade <%= @char.name %>, precisa reduzir</h1>
+<h3><%= @status.points %> pontos<h3>
+<h3>entre:</h3>
+
+<%= form_with scope: :newpoints, url: agelimits_path, local: true do |f| %>
+    <% @status.symbols[:change].each do |s| %>
+        <div class="form-group">
+            <%= f.label s%>
+            <%= f.number_field s, :class => 'form-control', :min => '0', :max => '99',  :autocomplete =>'off', :required => 'true', :style => ''%>
+        </div>
+    <% end %>
+
+    <p><%= @char.name %> obrigatóriamente perde <%= @status.points %> pontos de <%= @status.details[:must]%></p>
+
+    <%= f.submit 'Enviar', :class => "btn btn-primary"%>
+
+<% end %>
