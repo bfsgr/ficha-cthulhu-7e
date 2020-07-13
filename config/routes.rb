@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   get 'preskills', to: "skill#pre_skills"
 
   get 'agelimits', to: "stats#age_limits"
-
+  post 'agelimits', to: "stats#new_points"
 end
