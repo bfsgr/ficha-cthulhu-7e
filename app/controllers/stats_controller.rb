@@ -31,6 +31,9 @@ class StatsController < ApplicationController
         end
     end
 
+    def new_points
+    end
+
     def create
         if not stats_set()
             @stats = Stat.new(stat_params.merge(:character_id => @char.id))
