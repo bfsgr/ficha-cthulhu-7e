@@ -1,17 +1,17 @@
-<h1>Devido a idade <%= @char.name %>, precisa reduzir</h1>
-<h3><%= @status.points %> pontos<h3>
-<h3>entre:</h3>
 
 <%= form_with scope: :newpoints, url: agelimits_path, local: true do |f| %>
-    <% @status.symbols[:change].each do |s| %>
-        <div class="form-group">
-            <%= f.label s%>
-            <%= f.number_field s, :class => 'form-control', :min => '0', :max => '99',  :autocomplete =>'off', :required => 'true', :style => ''%>
-        </div>
-    <% end %>
+    <div class='setstat-wrapper'>
+        <h1 class='setstat-header'>Devido a idade <%= @char.name %>, precisa reduzir</h1>
+        <h2 class='setstat-points'><p><%= @status.points %></p> pontos de</h2>
+        <% @status.symbols[:change].each_with_index do |s,i| %>
+            <div class='setstat-cwrap' style="<%="grid-area: 3 / #{3+i} / 3 / #{4+i}"%>" >
+            <%= f.label @status.details[:change][i], :class => "setstat-label #{@status.colors[:change][i]}", :style => "grid-area: 3 / #{3+i} / 3 / #{4+i};" %>
+            <%= f.number_field s, :class => "card setstat-card #{@status.colors[:change][i]}", :min => '0', :max => '99',  :autocomplete =>'off', :required => 'true', :style => "grid-area: 3 / #{3+i} / 3 / #{4+i}"%>
+            </div>
+        <% end %>
 
-    <p><%= @char.name %> obrigatóriamente perde <%= @status.points %> pontos de <%= @status.details[:must]%></p>
+        <p style="grid-area: 4 / 3 / 4 / 7; text-align: center;" class='align-self-center'><%= @char.name %> também perderá <%= @status.points %> pontos de <%= @status.details[:must]%></p>
 
-    <%= f.submit 'Enviar', :class => "btn btn-primary"%>
-
+        <%= f.submit 'Enviar', :class => "btn btn-primary align-self-center", :style => 'grid-area: 5 / 4 / 5 / 6'%>
+    </div>
 <% end %>
