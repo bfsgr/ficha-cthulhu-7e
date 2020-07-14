@@ -18,10 +18,6 @@ form {
         grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr 1fr 200px;
         grid-template-rows: 1fr  1fr 1fr 1fr 1fr;
 
-        input:required:invalid, input:focus:invalid {
-            /* insert your own styles for invalid form input */
-            box-shadow: none;
-        }
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -60,7 +56,11 @@ form {
         max-width: 250px;
         display: flex;
         flex-direction: column;
-        margin: 0 10px 20px 10px;;
+        margin: 0 10px 20px 10px;
+        //overwrite default invalid style
+        > input:required:invalid, input:focus:invalid {
+            box-shadow: none;
+        }
     }
     &-header{
         grid-area: 1 / 3 / 1 / 7;

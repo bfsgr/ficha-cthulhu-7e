@@ -8,10 +8,7 @@ var update_points = function(ev){
     let changed = ev.target;
     let newv = Number(changed.value);
 
-    if(newv < 15 || newv > 90){
-        changed.parentElement.style.boxShadow = '0px 0px 8px red'
-        return
-    } else {
+    if(changed.checkValidity()){
         changed.parentElement.style.boxShadow = 'none'
     }
 
@@ -39,5 +36,8 @@ var update_points = function(ev){
 window.onload = function(){
     for(let i = 0; i < 8; i++) {
         inputs[i].onchange = update_points;
+        inputs[i].addEventListener('invalid', function(ev){
+            ev.target.parentElement.style.boxShadow = '0px 0px 8px red'
+        })
     }
 }
