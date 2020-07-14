@@ -55,16 +55,18 @@ class StatsController < ApplicationController
 end
 
 class AgeLimit
-    attr_reader :symbols, :details, :points
+    attr_reader :symbols, :details, :points, :colors
     def initialize(value, default)
         if default
             @symbols = { change: [:str, :con, :dex], must: [:app] }
             @points = value
             @details = { change: ['Força', 'Constituição', 'Destreza'], must: 'Aparência' }
+            @colors = { change: ['bg-danger', 'bg-warning', 'bg-primary'], must: 'bg-info' }
         else
             @symbols = { change: [:str, :siz], must: [:edu] }
             @points = value
             @details = { change: ['Força', 'Tamanho'], must: 'Educação' }
+            @colors = { change: ['bg-danger', 'bg-orange'], must: 'bg-pink' }
         end
     end
 end
