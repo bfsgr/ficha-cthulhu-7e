@@ -15,7 +15,7 @@ var update_points = function(ev){
     let index = changed.dataset.index;
 
     let ac = 0;
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < inputs.length; i++){
         if( i != index){
             ac += Number(inputs[i].value)
         }
@@ -34,7 +34,7 @@ var update_points = function(ev){
 }
 
 window.onload = function(){
-    for(let i = 0; i < 8; i++) {
+    for(let i = 0; i < inputs.length; i++) {
         inputs[i].onchange = update_points;
         inputs[i].addEventListener('invalid', function(ev){
             ev.target.parentElement.style.boxShadow = '0px 0px 8px red'
