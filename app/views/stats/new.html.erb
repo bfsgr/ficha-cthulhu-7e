@@ -1,17 +1,41 @@
 <%= form_with scope: :stat, url: setstat_path, local: true do |f|%>
     <div class='setstat-wrapper'>
-        <h1 class="setstat-header" >Defina os atributos de <%=@char.name%></h1>
+        <h1 class="setstat-header align-self-center" >Defina os atributos de <%=@char.name%></h1>
         <h2 class="setstat-points">
             <p id="points">460</p> pontos restantes
         </h2>
-        <%= f.number_field :str, :class => 'card setstat-card bg-danger', :min => '15', :max => '90',  :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 3 / 3 / 4', :'data-index' => '0', :'data-toggle' => "popover", :title => "Força", :'data-content' => "A força mede o poder muscular de um investigador. Quanto maior for, mais o investigador conseguirá levantar ou se agarrar a algo. Este atributo determina o dano que o investigador causa no combate corpo a corpo "%>
-        <%= f.number_field :dex, :class => 'card setstat-card bg-primary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 4 / 3 / 5', :'data-index' => '1', :'data-toggle' => "popover", :title => "Destreza", :'data-content' => "Investigadores com valores altos de Destreza são mais rápidos, mais ágeis e mais fisicamente flexíveis. Um teste de Destreza pode ser feito para se agarrar em algum lugar e evitar uma queda, ou para realizar alguma tarefa delicada."%>
-        <%= f.number_field :int, :class => 'card setstat-card bg-success', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 5 / 3 / 6', :'data-index' => '2', :'data-toggle' => "popover", :title => "Inteligência", :'data-content' => "A inteligência representa o quão bem os investigadores aprendem, lembram, analisam informações e resolvem enigmas complexos. A inteligência determina a quantidade de pontos de perícia de Interesses Pessoais"%>
-        <%= f.number_field :con, :class => 'card setstat-card bg-warning', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 3 / 6 / 3 / 7', :'data-index' => '3', :'data-toggle' => "popover", :title => "Constituição", :'data-content' => "A constituição representa saúde, vigor e vitalidade. Venenos e doenças podem desafiar diretamente a constituição de um investigador."%>
-        <%= f.number_field :app, :class => 'card setstat-card bg-info', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 3 / 4 / 4', :'data-index' => '4', :'data-toggle' => "popover", :title => "Aparência", :'data-content' => "A aparência mede tanto a atratividade física quanto a personalidade. Uma pessoa com uma aparência alta é encantadora e simpática, mas pode não ser bonita no sentido convencional."%>
-        <%= f.number_field :pow, :class => 'card setstat-card bg-secondary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 4 / 4 / 5', :'data-index' => '5', :'data-toggle' => "popover", :title => "Poder", :'data-content' => "Poder indica a força de vontade: quanto maior o Poder, maior a aptidão mágica e a resistência à magia. Este atributo define seus pontos de sanidade iniciais."%>
-        <%= f.number_field :siz, :class => 'card setstat-card bg-orange', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 5 / 4 / 6', :'data-index' => '6', :'data-toggle' => "popover", :title => "Tamanho", :'data-content' => "O tamanho representa altura e peso, ambos em um único número. Para enxergar por sobre um muro, espremer-se através de uma pequena abertura ou até mesmo para saber de quem é a cabeça que está despontando da grama, use o tamanho. "%>
-        <%= f.number_field :edu, :class => 'card setstat-card bg-pink', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :style => 'grid-area: 4 / 6 / 4 / 7', :'data-index' => '7', :'data-toggle' => "popover", :title => "Educação", :'data-content' => "Educação é uma medida para o conhecimento formal e factual possuído pelo investigador, bem como um indicativo do tempo que o investigador gastou na educação formal"%>
+        <div class='setstat-cwrap' style="grid-area: 3 / 3 / 3 / 4" >
+            <%= f.label 'Força', :class => "setstat-label bg-danger"%>
+            <%= f.number_field :str, :class => 'card setstat-card bg-danger', :min => '15', :max => '90',  :autocomplete =>'off', :required => 'true', :'data-index' => '0'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 3 / 4 / 3 / 5" >
+            <%= f.label 'Destreza', :class => "setstat-label bg-primary"%>
+            <%= f.number_field :dex, :class => 'card setstat-card bg-primary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '1'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area:3 / 5 / 3 / 6" >
+            <%= f.label 'Inteligência', :class => "setstat-label bg-success"%>
+            <%= f.number_field :int, :class => 'card setstat-card bg-success', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '2'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 3 / 6 / 3 / 7" >
+            <%= f.label 'Constituição', :class => "setstat-label bg-warning"%>
+            <%= f.number_field :con, :class => 'card setstat-card bg-warning', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '3'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 4 / 3 / 4 / 4" >
+            <%= f.label 'Aparência', :class => "setstat-label bg-info"%>
+            <%= f.number_field :app, :class => 'card setstat-card bg-info', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '4'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 4 / 4 / 4 / 5" >
+            <%= f.label 'Poder', :class => "setstat-label bg-secondary"%>
+            <%= f.number_field :pow, :class => 'card setstat-card bg-secondary', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '5'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 4 / 5 / 4 / 6" >
+            <%= f.label 'Tamanho', :class => "setstat-label bg-orange"%>
+            <%= f.number_field :siz, :class => 'card setstat-card bg-orange', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '6'%>
+        </div>
+        <div class='setstat-cwrap' style="grid-area: 4 / 6 / 4 / 7" >
+            <%= f.label 'Educação', :class => "setstat-label bg-pink"%>
+            <%= f.number_field :edu, :class => 'card setstat-card bg-pink', :min => '15', :max => '90', :autocomplete =>'off', :required => 'true', :'data-index' => '7'%>
+        </div>
         <%= f.submit 'Continuar', :class => "btn btn-primary align-self-center", :id => 'submit', :style => 'grid-area: 5 / 4 / 5 / 6'%>
     </div>
     <%end%> 
