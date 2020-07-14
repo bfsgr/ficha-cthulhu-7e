@@ -57,3 +57,28 @@ function fase6(){
 }
 
 
+handleKey = function(ev){
+    if(ev.key == "Enter"){
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        let el = document.getElementsByClassName('wrapper-newchar');
+
+        for(let i = 0; i < el.length; i++){
+            if(el[i].offsetParent !== null){
+                if(el[i].children[1].checkValidity()){
+                    el[i].children[2].click()
+                } else {
+                    el[i].children[1].classList += ' is-invalid'
+                }
+            }
+        }
+    }
+}
+
+
+window.onload = function(){
+    if(document.getElementsByClassName('wrapper-newchar').length > 0){
+        document.onkeydown = handleKey
+    }
+}
