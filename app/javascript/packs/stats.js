@@ -7,6 +7,14 @@ var update_points = function(ev){
 
     let changed = ev.target;
     let newv = Number(changed.value);
+
+    if(newv < 15 || newv > 90){
+        changed.parentElement.style.boxShadow = '0px 0px 8px red'
+        return
+    } else {
+        changed.parentElement.style.boxShadow = 'none'
+    }
+
     let index = changed.dataset.index;
 
     let ac = 0;
