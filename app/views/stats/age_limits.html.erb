@@ -7,7 +7,7 @@
             <% @status.symbols[:change].each_with_index do |s,i| %>
                 <div class='setstat-cwrap'>
                 <%= f.label @status.details[:change][i], :class => "setstat-label #{@status.colors[:change][i]}", :style => "grid-area: 3 / #{3+i} / 3 / #{4+i};"%>
-                <%= f.number_field s, :class => "card setstat-card #{@status.colors[:change][i]}", :min => '0', :max => '99',  :autocomplete =>'off', :required => 'true', :value => @stat[@status.symbols[:change][i]] %>
+                <%= f.number_field s, :class => "card setstat-card #{@status.colors[:change][i]}", :min => '0', :max => @stat[@status.symbols[:change][i]],  :autocomplete =>'off', :required => 'true', :value => @stat[@status.symbols[:change][i]] %>
                 </div>
             <% end %>
             <div class='setstat-cwrap' style="grid-area: 3 / 6 / 3 / 7" data-toggle="tooltip" data-placement="top" title='<%=@char.name%> também perderá <%=@status.points%> pontos de <%= @status.details[:must]%>'>
