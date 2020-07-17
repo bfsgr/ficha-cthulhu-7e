@@ -119,6 +119,7 @@ class StatsController < ApplicationController
         if stats_set()
             if @stat.done
                 redirect_to '/character/' + @char.id.to_s
+                return true
             else 
                 return false
             end
