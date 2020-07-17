@@ -6,7 +6,7 @@ class StatsController < ApplicationController
         if not stats_set()
             @stats = Stat.new
         else
-            redirect_to '/character/' + @char.id.to_s
+            redirect_to @char
         end
     end
     
@@ -18,7 +18,7 @@ class StatsController < ApplicationController
             @status = set_limits
         else 
             @stat.update(:done => true)
-            redirect_to '/character/' + @char.id.to_s
+            redirect_to @char
         end
     end
 
@@ -40,7 +40,7 @@ class StatsController < ApplicationController
                 improve_edu()
 
                 if @stat.update(newstats_params.merge(must => @stat[must]-@status.points, :done => true)) 
-                    redirect_to '/character/' + @char.id.to_s
+                    redirect_to @char
                 else 
                     render plain: @stat.errors.inspect
                 end
@@ -59,7 +59,7 @@ class StatsController < ApplicationController
                 redirect_to :action => 'age_limits'
             end
         else
-            redirect_to '/character/' + @char.id.to_s
+            redirect_to @char
         end
     end
 
@@ -118,7 +118,7 @@ class StatsController < ApplicationController
     def is_done
         if stats_set()
             if @stat.done
-                redirect_to '/character/' + @char.id.to_s
+                redirect_to @char
                 return true
             else 
                 return false

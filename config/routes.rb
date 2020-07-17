@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'newchar', to: 'character#new'
   post 'newchar', to: 'character#create'
 
-  get 'character/:id', to: 'character#show'
+  get 'character/:id', to: 'character#show', as: 'character'
 
   get 'setstat', to: 'stats#new'
   post 'setstat', to: 'stats#create'
