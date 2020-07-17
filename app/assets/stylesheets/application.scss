@@ -43,3 +43,18 @@ html, body {
     }
 }
 
+.errors-toast {
+    background-color: var(--danger);
+    margin: 1em 1em 1em 3em;
+
+    .toast-header{
+        background-color: var(--dark);
+        color: var(--light);
+    }
+    .toast-body{
+        background-color: var(--danger);
+        color: var(--light);
+        line-height: 0.5em;
+    }
+}
+
