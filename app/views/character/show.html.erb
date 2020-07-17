@@ -1,1 +1,3 @@
 <%= @char.inspect %>
+
+<%= button_to 'Delete character', {:controller => 'character', :action => 'remove'},  :method => :post, :class => 'btn btn-danger' %>
