@@ -1,5 +1,6 @@
 class StatsController < ApplicationController
     before_action :authenticate_user, :validate_char
+    before_action :is_done, :only => [:age_limits, :new_points]
 
     def new
         if not stats_set()
@@ -16,6 +17,7 @@ class StatsController < ApplicationController
         if stats_set() and not (@char.age >= 20 and @char.age <= 39) # => generate @stat            
             @status = set_limits
         else 
+            @stat.update(:done => true)
             redirect_to '/character/' + @char.id.to_s
         end
     end
@@ -37,7 +39,7 @@ class StatsController < ApplicationController
             if old_stat-new_stat == @status.points 
                 improve_edu()
 
-                if @stat.update(newstats_params.merge(must => @stat[must]-@status.points)) 
+                if @stat.update(newstats_params.merge(must => @stat[must]-@status.points, :done => true)) 
                     redirect_to '/character/' + @char.id.to_s
                 else 
                     render plain: @stat.errors.inspect
@@ -110,6 +112,16 @@ class StatsController < ApplicationController
             @stat.improve_edu(4)
         else
             raise ActionController::RoutingError.new('Invalid age') #should never run
+        end
+    end
+
+    def is_done
+        if stats_set()
+            if @stat.done
+                redirect_to '/character/' + @char.id.to_s
+            else 
+                return false
+            end
         end
     end
 
