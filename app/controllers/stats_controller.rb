@@ -10,14 +10,43 @@ class StatsController < ApplicationController
     end
     
     def age_limits
-        if stats_set() # => generate @stat            
-            @status = set_limits(@char)
+        @change = Stat.new()
+
+
+        if stats_set() and not (@char.age >= 20 and @char.age <= 39) # => generate @stat            
+            @status = set_limits
+        else 
+            redirect_to '/character/' + @char.id.to_s
         end
     end
 
     def new_points
         if stats_set()
-            render plain: newstats_params
+            @change = Stat.new()
+            newstats_params()
+            new_stat = 0
+            old_stat = 0
+
+            @status.symbols[:change].each do |s|
+                old_stat += @stat[s]
+                new_stat += params[:newpoints][s].to_i
+            end
+
+            must = @status.symbols[:must][0]
+
+            if old_stat-new_stat == @status.points 
+                improve_edu()
+
+                if @stat.update(newstats_params.merge(must => @stat[must]-@status.points)) 
+                    redirect_to '/character/' + @char.id.to_s
+                else 
+                    render plain: @stat.errors.inspect
+                end
+            else 
+                @change.errors[:base] << "The new points do not meet the criteria"
+                render 'age_limits'
+            end
+
         end
     end
 
@@ -40,12 +69,12 @@ class StatsController < ApplicationController
     end
 
     def newstats_params
-        change_set = set_limits(@char)
-        params.require(:newpoints).permit(change_set.symbols[:change])
+        @status = set_limits
+        params.require(:newpoints).permit(@status.symbols[:change])
     end
 
-    def set_limits(char)
-        case char.age
+    def set_limits
+        case @char.age
         when 18..19
             return AgeLimit.new(5, false)
         when 20..39
@@ -59,6 +88,26 @@ class StatsController < ApplicationController
             return AgeLimit.new(20, true)
         when 80..89
             return AgeLimit.new(25, true)
+        else
+            raise ActionController::RoutingError.new('Invalid age') #should never run
+        end
+    end
+
+    def improve_edu
+        case @char.age
+        when 18..19
+        when 20..39
+            @stat.improve_edu(1)
+        when 40..49
+            @stat.improve_edu(2)
+        when 50..59
+            @stat.improve_edu(3)
+        when 60..69
+            @stat.improve_edu(4)
+        when 70..79
+            @stat.improve_edu(4)
+        when 80..89
+            @stat.improve_edu(4)
         else
             raise ActionController::RoutingError.new('Invalid age') #should never run
         end
