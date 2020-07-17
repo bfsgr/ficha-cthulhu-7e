@@ -1,5 +1,6 @@
 class CharacterController < ApplicationController
 	before_action :authenticate_user
+	before_action :validate_char, :only => [:remove]
 
 	def new
 		@char = Character.new
@@ -9,12 +10,11 @@ class CharacterController < ApplicationController
 		session[:character_id] = params[:id]
 		if not validate_char()
 			redirect_to :controller => 'player', :action => 'home'
-		end
-
-		if not stats_set()
+		elsif not stats_set()
 			redirect_to :controller => 'stats', :action => 'new'
+		elsif not stats_done()
+			redirect_to :controller => 'stats', :action => 'age_limits'
 		end
-
 	end
 
 	def edit
@@ -24,6 +24,11 @@ class CharacterController < ApplicationController
 	end
 
 	def remove
+		if @char.destroy
+			redirect_to :controller => 'player', :action => 'home'
+		else
+			redirect_to @char
+		end 
 	end
 
 	def create

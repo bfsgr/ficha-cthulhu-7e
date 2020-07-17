@@ -43,4 +43,10 @@ class ApplicationController < ActionController::Base
                 return @stat
             end
         end
+
+        def stats_done
+            if stats_set()
+                return @stat.done
+            end
+        end
 end
