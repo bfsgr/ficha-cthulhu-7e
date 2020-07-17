@@ -33,8 +33,8 @@ class Character < ApplicationRecord
     end
 
     belongs_to :user
-    has_one :stat
-    has_one :current_stat
+    has_one :stat, dependent: :destroy
+    has_one :current_stat, dependent: :destroy
 
     validates :name, :presence => true, :length => { :in => 3..50 }
     validates :ocupation, :presence => true, numericality: { only_integer: true, less_than: 28, greater_than: -1 }
