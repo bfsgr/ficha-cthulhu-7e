@@ -11,27 +11,14 @@ class StatsController < ApplicationController
     
     def age_limits
         if stats_set() # => generate @stat            
-            case @char.age
-            when 18..19
-                @status = AgeLimit.new(5, false)
-            when 20..39
-            when 40..49
-                @status = AgeLimit.new(5, true)
-            when 50..59
-                @status = AgeLimit.new(10, true)
-            when 60..69
-                @status = AgeLimit.new(15, true)
-            when 70..79
-                @status = AgeLimit.new(20, true)
-            when 80..89
-                @status = AgeLimit.new(25, true)
-            else
-                raise ActionController::RoutingError.new('Invalid age') #should never run
-            end
+            @status = set_limits(@char)
         end
     end
 
     def new_points
+        if stats_set()
+            render plain: newstats_params
+        end
     end
 
     def create
@@ -50,6 +37,31 @@ class StatsController < ApplicationController
     private
     def stat_params
         params.require(:stat).permit(:str, :dex, :app, :int, :pow, :edu, :siz, :con)
+    end
+
+    def newstats_params
+        change_set = set_limits(@char)
+        params.require(:newpoints).permit(change_set.symbols[:change])
+    end
+
+    def set_limits(char)
+        case char.age
+        when 18..19
+            return AgeLimit.new(5, false)
+        when 20..39
+        when 40..49
+            return AgeLimit.new(5, true)
+        when 50..59
+            return AgeLimit.new(10, true)
+        when 60..69
+            return AgeLimit.new(15, true)
+        when 70..79
+            return AgeLimit.new(20, true)
+        when 80..89
+            return AgeLimit.new(25, true)
+        else
+            raise ActionController::RoutingError.new('Invalid age') #should never run
+        end
     end
 
 end
