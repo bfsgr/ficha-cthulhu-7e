@@ -3,4 +3,5 @@
 ### Lista de features planejados
 - [X] Sistema de login por código de convites
 - [ ] Painel do mestre
-- [ ] Painel do player:
+- [ ] Painel do player
+  - [X] Criação de personagem (sem skills por enquanto)
