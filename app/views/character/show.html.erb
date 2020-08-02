@@ -1,3 +1,21 @@
-<%= @char.inspect %>
+<div class='topbar'>
+    <p><%= @char.name %></p>
+    <div class='topbar-vs'>
+        <div>
+            <p>Vida<p>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div>
+            <p>Sanidade<p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<%= button_to 'Delete character', {:controller => 'character', :action => 'remove'},  :method => :post, :class => 'btn btn-danger' %>
+
+
+    <%# <%= button_to 'Delete character', {:controller => 'character', :action => 'remove'},  :method => :post, :class => 'btn btn-danger' %> 

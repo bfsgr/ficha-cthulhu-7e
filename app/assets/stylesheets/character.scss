@@ -16,6 +16,23 @@
     }
 }
 
+.topbar {
+    display: flex;
+    flex-direction: row;
+    margin: 0 32px 0 32px !important;
+    
+    p { margin: 0 }
+
+    &-vs{
+        display: flex;
+        width: 600px;
+
+        div {
+            width: 300px;
+        }
+    }
+}
+
 
 
 
