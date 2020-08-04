@@ -77,4 +77,25 @@ class Skill < ApplicationRecord
             ['Motosserras', 10],
         ]
     end 
+
+    def self.art 
+        [
+            "Atuação",
+            "Barbeiro",
+            "Caligrafia",
+            "Carpintaria",
+            "Cozinheiro",
+            "Dança",
+            "Belas Artes",
+            "Falsificação",
+            "Escritor",
+            "Dançarino de Morris",
+            "Cantor de Ópera",
+            "Pintor e Decorador",
+            "Fotografia",
+            "Oleiro",
+            "Escultor",
+            "Soprador de Tubos de Vidro"
+        ]
+    end
 end
