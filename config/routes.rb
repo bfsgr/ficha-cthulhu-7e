@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'setstat', to: 'stats#new'
   post 'setstat', to: 'stats#create'
 
-  get 'preskills', to: "skill#pre_skills"
+  get 'skills', to: "skill#entrypoint"
 
   get 'agelimits', to: "stats#age_limits"
   post 'agelimits', to: "stats#new_points"
